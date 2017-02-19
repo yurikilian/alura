@@ -12,26 +12,34 @@
 </head>
 <body>
 
-	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="POST" commandName="produto">
+	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="POST"
+		commandName="produto">
 		<div>
-			<label>Título</label> <input type="text" name="titulo">
+			<label>Título</label>
+			<form:input path="titulo" />
 			<form:errors path="titulo" />
 		</div>
 		<div>
 			<label>Descricao</label>
-			<textarea rows="10" cols="20" name="descricao"></textarea>
+			<form:textarea rows="10" cols="20" path="descricao" />
 			<form:errors path="descricao" />
 		</div>
 		<div>
-			<label>Páginas</label> <input type="text" name="paginas">
+			<label>Páginas</label>
+			<form:input path="paginas" />
 			<form:errors path="paginas" />
+		</div>
+		<div>
+			<label>Data de lançamento</label>
+			<form:input path="dataLancamento" />
+			<form:errors path="dataLancamento" />
 		</div>
 
 		<jstl:forEach items="${tipos}" var="tipoPreco" varStatus="status">
 			<div>
-				<label>${tipoPreco}</label> <input type="text"
-					name="precos[${status.index}].valor"> <input type="hidden"
-					name="precos[${status.index}].tipo" value="${tipoPreco}">
+				<label>${tipoPreco}</label> 
+					<form:input path="precos[${status.index}].valor" />
+					<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
 			</div>
 		</jstl:forEach>
 
