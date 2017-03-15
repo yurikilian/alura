@@ -9,31 +9,31 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		return null;
-	}
+  @Override
+  protected Class<?>[] getRootConfigClasses() {
+    return new Class[] {SecurityConfiguration.class};
+  }
 
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebConfiguration.class, JPAConfiguration.class };
-	}
+  @Override
+  protected Class<?>[] getServletConfigClasses() {
+    return new Class[] {AppWebConfiguration.class, JPAConfiguration.class};
+  }
 
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
-	}
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] {"/"};
+  }
 
-	@Override
-	protected Filter[] getServletFilters() {
-		final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("ISO-8859-1");
-		return new Filter[] { characterEncodingFilter };
-	}
+  @Override
+  protected Filter[] getServletFilters() {
+    final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+    characterEncodingFilter.setEncoding("ISO-8859-1");
+    return new Filter[] {characterEncodingFilter};
+  }
 
-	@Override
-	protected void customizeRegistration(Dynamic registration) {
-		registration.setMultipartConfig(new MultipartConfigElement(""));
-	}
+  @Override
+  protected void customizeRegistration(Dynamic registration) {
+    registration.setMultipartConfig(new MultipartConfigElement(""));
+  }
 
 }
